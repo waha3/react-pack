@@ -4,7 +4,6 @@
   ],
   "plugins": [
     "transform-runtime",
-    "transform-es2015-typeof-symbol",
     "transform-decorators-legacy",
     "react-hot-loader/babel"
   ]

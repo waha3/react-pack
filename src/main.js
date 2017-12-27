@@ -4,7 +4,7 @@ import './style.css';
 export default class Main extends Component {
   render() {
     return (
-      <div>222</div>
+      <div>111</div>
     );
   }
 }
