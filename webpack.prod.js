@@ -25,7 +25,7 @@ module.exports = merge(commonConfig, {
         })
       }
     ]
-  }
+  },
   plugins: [
     new UglifyJSPlugin({
       sourceMap: true
