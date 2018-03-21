@@ -3,6 +3,7 @@ const merge = require('webpack-merge');
 const path = require('path');
 const commonConfig = require('./webpack.common.js');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = merge(commonConfig, {
   devtool: 'source-map',
@@ -16,11 +17,12 @@ module.exports = merge(commonConfig, {
   module: {
     rules: [
       {
-        test: /\.css$/,
+        test: /\.less$/,
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: [
-            'css-loader'
+            'css-loader',
+            'less-loader'
           ]
         })
       }
