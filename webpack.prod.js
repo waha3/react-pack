@@ -4,16 +4,11 @@ const path = require('path');
 const commonConfig = require('./webpack.common.js');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const { entries, htmlPlugin } = require('./util.js');
 
 module.exports = merge(commonConfig, {
-  devtool: 'source-map',
-  entry: {
-    app: './src/index.js',
-    vendor: [
-      'react',
-      'react-dom'
-    ]
-  },
+  // devtool: 'source-map',
+  entry: entries(),
   module: {
     rules: [
       {
@@ -39,7 +34,7 @@ module.exports = merge(commonConfig, {
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor'
     })
-  ],
+  ].concat(htmlPlugin()),
   output: {
     filename: '[name].[chunkhash].js',
     path: path.resolve(__dirname, 'dist'),
