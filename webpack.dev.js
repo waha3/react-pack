@@ -1,27 +1,31 @@
 const merge = require('webpack-merge');
+const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
 const commonConfig = require('./webpack.common.js');
 const webpack = require('webpack');
 const path = require('path');
 const { entries, htmlPlugin } = require('./util.js');
 
-const entryConfig = entries();
+// const entryConfig = entries();
 
-Object.keys(entryConfig).map(key => {
-  entryConfig[key] = ['webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000', entryConfig[key]];
-});
+// Object.keys(entryConfig).map(key => {
+//   // entryConfig[key] = ['webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000', entryConfig[key]];
+//   entryConfig[key] = entryConfig[key];
+// });
 
-console.log(entryConfig);
-
-console.log(htmlPlugin())
+// console.log(entries())
 
 module.exports = merge(commonConfig, {
   devtool: 'cheap-module-eval-source-map',
-  entry: entryConfig,
-  // entry: entries(),
+  entry: entries,
   devServer: {
     contentBase: './dist',
     port: 9000,
-    hot: true
+    hot: true,
+    compress: true,
+    quiet: true,
+    historyApiFallback: {
+      disableDotRule: true,
+    }
   },
   module: {
     rules: [
@@ -44,16 +48,16 @@ module.exports = merge(commonConfig, {
     ]
   },
   plugins: [
-    ...htmlPlugin(),
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('dev')
+      dev: true
     }),
     new webpack.optimize.CommonsChunkPlugin({
-      name: 'manifest',
-      minChunks: Infinity
+      name: ['vendor', 'manifest'],
     }),
+    ...htmlPlugin(),
+    new FriendlyErrorsPlugin()
   ],
   output: {
     filename: '[name]',

@@ -25,16 +25,19 @@ module.exports = merge(commonConfig, {
   },
   plugins: [
     new UglifyJSPlugin({
-      sourceMap: true
+      cache: true,
+      sourceMap: true,
+      parallel: true
     }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production')
     }),
     new webpack.HashedModuleIdsPlugin(),
     new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor'
-    })
-  ].concat(htmlPlugin()),
+      name: ['vendor', 'manifest']
+    }),
+    ...htmlPlugin(),
+  ],
   output: {
     filename: '[name].[chunkhash].js',
     path: path.resolve(__dirname, 'dist'),

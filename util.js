@@ -1,12 +1,13 @@
 const glob = require('glob');
-// const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+console.log(global.dev)
 
 exports.entries = () => {
   const map = {};
   const files = glob.sync('./entrys/*.js');
   files.map(file => {
-    const filename = file.replace(/^\.\/entrys\//, '');
+    const filename = file.replace(/^(\.\/entrys\/)(.*)(\.js)$/, '$2');
     map[filename] = file;
   });
   return map;
@@ -22,8 +23,7 @@ exports.htmlPlugin = () => {
       filename: filename,
       inject: true,
       template: htmlPath,
-      // chunksSortMode: 'none',
-      // chunks: [chunkname]
+      chunks: ['manifest', 'vendor', chunkname]
     });
     arr.push(htmlPluginConfig);
   });

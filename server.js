@@ -20,10 +20,6 @@ app.use(webpackHotMiddleware(compiler, {
   heartbeat: 10 * 1000
 }))
 
-// app.get('/', (req, res) => {
-//   res.sendFile(path.resolve(__dirname, './dist/index.html'))
-// });
-
 app.listen(3000, () => {
   logger(`${chalk.blue('> server in port 3000')}`);
 });
