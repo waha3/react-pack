@@ -4,22 +4,14 @@ const commonConfig = require('./webpack.common.js');
 const webpack = require('webpack');
 const path = require('path');
 const { entries, htmlPlugin } = require('./util.js');
-
-// const entryConfig = entries();
-
-// Object.keys(entryConfig).map(key => {
-//   // entryConfig[key] = ['webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000', entryConfig[key]];
-//   entryConfig[key] = entryConfig[key];
-// });
-
-// console.log(entries())
+const port = 9000;
 
 module.exports = merge(commonConfig, {
   devtool: 'cheap-module-eval-source-map',
   entry: entries,
   devServer: {
     contentBase: './dist',
-    port: 9000,
+    port: port,
     hot: true,
     compress: true,
     quiet: true,
@@ -51,7 +43,7 @@ module.exports = merge(commonConfig, {
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.DefinePlugin({
-      dev: true
+      DEV: JSON.stringify(true)
     }),
     new webpack.optimize.CommonsChunkPlugin({
       name: ['vendor', 'manifest'],

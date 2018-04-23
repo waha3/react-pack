@@ -36,7 +36,7 @@ module.exports = merge(commonConfig, {
     new webpack.optimize.CommonsChunkPlugin({
       name: ['vendor', 'manifest']
     }),
-    ...htmlPlugin(),
+    ...htmlPlugin(true),
   ],
   output: {
     filename: '[name].[chunkhash].js',
