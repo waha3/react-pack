@@ -16,26 +16,28 @@ module.exports = merge(commonConfig, {
     compress: true,
     quiet: true,
     historyApiFallback: {
-      disableDotRule: true,
+      disableDotRule: true
     }
   },
   module: {
     rules: [
       {
         test: /\.css$/,
-        use: [
-          'style-loader',
-          'css-loader'
-        ]
-      }, {
+        use: ['style-loader', 'css-loader']
+      },
+      {
         test: /\.less$/,
-        use: [{
+        use: [
+          {
             loader: 'style-loader'
-        }, {
+          },
+          {
             loader: 'css-loader'
-        }, {
+          },
+          {
             loader: 'less-loader'
-        }]
+          }
+        ]
       }
     ]
   },
@@ -46,7 +48,7 @@ module.exports = merge(commonConfig, {
       DEV: JSON.stringify(true)
     }),
     new webpack.optimize.CommonsChunkPlugin({
-      name: ['vendor', 'manifest'],
+      name: ['vendor', 'manifest']
     }),
     ...htmlPlugin(),
     new FriendlyErrorsPlugin()

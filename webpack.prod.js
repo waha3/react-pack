@@ -15,10 +15,7 @@ module.exports = merge(commonConfig, {
         test: /\.less$/,
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
-          use: [
-            'css-loader',
-            'less-loader'
-          ]
+          use: ['css-loader', 'less-loader']
         })
       }
     ]
@@ -36,7 +33,7 @@ module.exports = merge(commonConfig, {
     new webpack.optimize.CommonsChunkPlugin({
       name: ['vendor', 'manifest']
     }),
-    ...htmlPlugin(true),
+    ...htmlPlugin(true)
   ],
   output: {
     filename: '[name].[chunkhash].js',
@@ -44,4 +41,3 @@ module.exports = merge(commonConfig, {
     publicPath: '/'
   }
 });
-

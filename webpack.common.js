@@ -9,15 +9,13 @@ module.exports = {
     rules: [
       {
         test: /\.(png|svg|jpg|gif)$/,
-        use: [
-          'file-loader'
-        ]
-      }, {
+        use: ['file-loader']
+      },
+      {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
-        use: [
-          'file-loader'
-        ]
-      }, {
+        use: ['file-loader']
+      },
+      {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: [
@@ -26,7 +24,8 @@ module.exports = {
             options: {
               cacheDirectory: path.resolve(__dirname, '.cache')
             }
-          }, {
+          },
+          {
             loader: 'babel-loader',
             options: {
               cacheDirectory: true
@@ -36,10 +35,5 @@ module.exports = {
       }
     ]
   },
-  plugins: [
-    new CleanWebpackPlugin(['dist']),
-    new ManifestPlugin(),
-    new ExtractTextPlugin('app.css'),
-  ]
+  plugins: [new CleanWebpackPlugin(['dist']), new ManifestPlugin(), new ExtractTextPlugin('app.css')]
 };
-

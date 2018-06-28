@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import './style.less'
+import React, { Component } from 'react';
+import './style.less';
 
 export default class Main extends Component {
   render() {
@@ -8,6 +8,6 @@ export default class Main extends Component {
         <div>111</div>
         <div>11122</div>
       </div>
-    )
+    );
   }
 }

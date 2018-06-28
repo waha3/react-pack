@@ -37,4 +37,3 @@ exports.htmlPlugin = (production = false) => {
   });
   return arr;
 };
-
