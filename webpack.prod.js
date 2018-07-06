@@ -7,7 +7,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const { entries, htmlPlugin } = require('./util.js');
 
 module.exports = merge(commonConfig, {
-  // devtool: 'source-map',
+  mode: 'production',
   entry: entries(),
   module: {
     rules: [
@@ -26,13 +26,7 @@ module.exports = merge(commonConfig, {
       sourceMap: true,
       parallel: true
     }),
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('production')
-    }),
     new webpack.HashedModuleIdsPlugin(),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: ['vendor', 'manifest']
-    }),
     ...htmlPlugin(true)
   ],
   output: {

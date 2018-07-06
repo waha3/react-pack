@@ -1,7 +1,6 @@
 const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   context: __dirname,
@@ -35,5 +34,5 @@ module.exports = {
       }
     ]
   },
-  plugins: [new CleanWebpackPlugin(['dist']), new ManifestPlugin(), new ExtractTextPlugin('app.css')]
+  plugins: [new CleanWebpackPlugin(['dist']), new ManifestPlugin()]
 };

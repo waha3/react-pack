@@ -7,17 +7,18 @@ const { entries, htmlPlugin } = require('./util.js');
 const port = 9000;
 
 module.exports = merge(commonConfig, {
+  mode: 'development',
   devtool: 'cheap-module-eval-source-map',
   entry: entries,
   devServer: {
-    contentBase: './dist',
+    contentBase: path.resolve(__dirname, 'dist'),
     port: port,
     hot: true,
     compress: true,
-    quiet: true,
-    historyApiFallback: {
-      disableDotRule: true
-    }
+    quiet: true
+    // historyApiFallback: {
+    //   disableDotRule: true
+    // }
   },
   module: {
     rules: [
@@ -41,21 +42,10 @@ module.exports = merge(commonConfig, {
       }
     ]
   },
-  plugins: [
-    new webpack.NamedModulesPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.DefinePlugin({
-      DEV: JSON.stringify(true)
-    }),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: ['vendor', 'manifest']
-    }),
-    ...htmlPlugin(),
-    new FriendlyErrorsPlugin()
-  ],
+  plugins: [new webpack.NamedModulesPlugin(), new webpack.HotModuleReplacementPlugin(), ...htmlPlugin(), new FriendlyErrorsPlugin()],
   output: {
-    filename: '[name]',
-    path: path.resolve(__dirname, './dist'),
+    filename: '[name].js',
+    path: path.resolve(__dirname, 'dist'),
     publicPath: '/'
   }
 });
