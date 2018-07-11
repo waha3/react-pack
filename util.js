@@ -22,7 +22,7 @@ exports.htmlPlugin = (production = false) => {
       inject: true,
       template: htmlPath,
       cache: true,
-      chunks: ['manifest', 'vendor', chunkname]
+      chunks: [chunkname]
     };
 
     if (production) {

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-// import './style.less';
+import './style.less';
 // import Data from './data.js';
-
 
 export default class Main extends Component {
   render() {

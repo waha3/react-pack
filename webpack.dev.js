@@ -42,7 +42,12 @@ module.exports = merge(commonConfig, {
       }
     ]
   },
-  plugins: [new webpack.NamedModulesPlugin(), new webpack.HotModuleReplacementPlugin(), ...htmlPlugin(), new FriendlyErrorsPlugin()],
+  plugins: [
+    new webpack.NamedModulesPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
+    ...htmlPlugin(),
+    new FriendlyErrorsPlugin()
+  ],
   output: {
     filename: '[name].js',
     path: path.resolve(__dirname, 'dist'),
